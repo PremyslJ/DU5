@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +9,16 @@ public class AddingFlowersToTheList {
 
     private List<Plant> plantList = new ArrayList<>();
 
-    public void loadDataFromFile(String filename){
-        Scanner scanner = new Scanner(new BufferedReader(new FileReader(filename)))
+    public void loadDataFromFile(String filename) throws PlantException {
+        try (Scanner scanner = new Scanner(new BufferedReader(new FileReader(filename)))) {
+
+            while (scanner.hasNextLine()){
+                String line = scanner.nextLine();
+                System.out.println(line);
+            }
+        } catch (FileNotFoundException e) {
+            throw new PlantException("Soubor" + filename + "nebyl malezen" + e.getLocalizedMessage());
+        }
     }
 
     // přidání další rostliny
