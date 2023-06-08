@@ -1,16 +1,15 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class AddingFlowersToTheList {
 
     private List<Plant> plantList = new ArrayList<>();
 
-    public List<Plant> getPlantList() {
-        return plantList;
-    }
-
-    public void setPlantList(List<Plant> plantList) {
-        this.plantList = plantList;
+    public void loadDataFromFile(String filename){
+        Scanner scanner = new Scanner(new BufferedReader(new FileReader(filename)))
     }
 
     // přidání další rostliny
