@@ -25,28 +25,28 @@ public class Plant {
     }
 
 
-    public Plant(String name, String notes, LocalDate planted, LocalDate watering, int frequencyOfWatering) {
+    public Plant(String name, String notes, LocalDate planted, LocalDate watering, int frequencyOfWatering) throws PlantException {
         this.name = name;
         this.notes = notes;
         this.planted = planted;
         this.watering = watering;
-        this.frequencyOfWatering = frequencyOfWatering;
+        this.setFrequencyOfWatering(frequencyOfWatering);
     }
 
-    public Plant(String name, LocalDate planted, int frequencyOfWatering) {
+    public Plant(String name, LocalDate planted, int frequencyOfWatering) throws PlantException {
         this.name = name;
         this.notes = "";
         this.planted = planted;
         this.watering = LocalDate.now();
-        this.frequencyOfWatering = frequencyOfWatering;
+        this.setFrequencyOfWatering(frequencyOfWatering);
     }
 
-    public Plant(String name, LocalDate planted) {
+    public Plant(String name, LocalDate planted) throws PlantException {
         this.name = name;
         this.notes = "";
         this.planted = LocalDate.now();
         this.watering = LocalDate.now();
-        this.frequencyOfWatering = 7;
+        this.setFrequencyOfWatering(7);
     }
 
     public LocalDate getOtherTopping(){
@@ -95,9 +95,10 @@ public class Plant {
         return frequencyOfWatering;
     }
 
-    public void setFrequencyOfWatering(int frequencyOfWatering) {
+    public void setFrequencyOfWatering(int frequencyOfWatering) throws PlantException {
         if(frequencyOfWatering <=0){
-            throw new RuntimeException("frekvence je rovna nebo menší než nula,zadáno  ("+frequencyOfWatering+" )");
+            throw new PlantException(
+                    "frekvence je rovna nebo menší než nula,zadáno  ("+frequencyOfWatering+" )");
         }
 
         this.frequencyOfWatering = frequencyOfWatering;
