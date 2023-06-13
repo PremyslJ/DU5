@@ -12,13 +12,6 @@ public class Plant {
     private LocalDate watering;
     private int frequencyOfWatering;
 
-    List<Plant> plantList = new ArrayList<>();
-
-
-    public void add(Plant newPlant) {
-
-        plantList.add(newPlant);
-    }
 
     // konstruktor pro nastavení všech atributů
     public Plant(String name, String notes, LocalDate planted, LocalDate watering,
