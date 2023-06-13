@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class AddingFlowersToTheList {
+public class FlowerManager {
 
     private List<Plant> plantList = new ArrayList<>();
 

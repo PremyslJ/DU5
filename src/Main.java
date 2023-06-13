@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
 
         // vytvoření proměnné a objektu
-        AddingFlowersToTheList addingFlowersToTheList = new AddingFlowersToTheList();
+        FlowerManager flowerManager = new FlowerManager();
 
 
         try {   // vytvoření objektu
@@ -22,14 +22,14 @@ public class Main {
             System.err.println("  Nastala chyba při přidávání rostliny,  " + e.getLocalizedMessage());
         }
         try {
-            addingFlowersToTheList.loadDataFromFile(Settings.fileName(), Settings.delimiter());
+            flowerManager.loadDataFromFile(Settings.fileName(), Settings.delimiter());
         } catch (PlantException e) {
             System.err.println("  nepodařilo se načíst data ze souboru!!!" + e.getLocalizedMessage());
         }
 
         // přidá další objekt do seznamu
         try {
-            addingFlowersToTheList.add(new Plant("Gerbera", "z řádu hvězdnicotvaré",
+            flowerManager.add(new Plant("Gerbera", "z řádu hvězdnicotvaré",
                     LocalDate.of(2022, 5, 5),
                     LocalDate.of(2023, 11, 1),
                     286));
@@ -38,7 +38,7 @@ public class Main {
         }
         // přidá další objekt do seznamu +
         try {
-            addingFlowersToTheList.add(new Plant("Růže", "cévnaté rostliny",
+            flowerManager.add(new Plant("Růže", "cévnaté rostliny",
                     LocalDate.of(2022, 5, 1),
                     LocalDate.of(2023, 1, 1),
                     5));
@@ -46,17 +46,17 @@ public class Main {
             System.err.println("  nelze přidat do seznamu" + e.getLocalizedMessage());
         }
         // výpis seznamu květin pomocí cyklu "foreach"
-        List<Plant> plantList = addingFlowersToTheList.getPlantList();
+        List<Plant> plantList = flowerManager.getPlantList();
         plantList.forEach(System.out::println);
 
 
-        addingFlowersToTheList.remove(plantList.remove(1));  // vymaže objekt s indexem č.1
+        flowerManager.remove(plantList.remove(1));  // vymaže objekt s indexem č.1
 
         // výpis seznamu květin pomocí cyklu "foreach"
         plantList.forEach(System.out::println);
 
         try {
-            addingFlowersToTheList.saveDataToFile(Settings.fileName1(), Settings.delimiter());
+            flowerManager.saveDataToFile(Settings.fileName1(), Settings.delimiter());
         } catch (PlantException e) {
             System.err.println("   Chyba při zápisu do souboru: " + e.getLocalizedMessage() + "!");
         }
