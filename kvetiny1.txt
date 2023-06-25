@@ -1,4 +1,5 @@
 Fialka 1	Popis fialky - je fialová a hezká	3	2021-05-12	2021-01-01
+Vánoční hvězda bez poznámky		4	2021-05-10	2021-01-01
 Sukulent v koupelně	Nezalévá se	365	2011-03-01	2011-03-01
-Gerbera	z řádu hvězdnicotvaré	286	2023-11-01	2022-05-05
-Růže	cévnaté rostliny	5	2023-01-01	2022-05-01
+Gerbera	z řádu hvězdnicotvaré	286	2023-01-01	2022-01-01
+Růže	cévnaté rostliny	5	2023-01-01	2022-01-01
