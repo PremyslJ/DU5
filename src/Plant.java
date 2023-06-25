@@ -1,10 +1,12 @@
-import java.time.LocalDate;;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
-public class Plant {
-    private static int idCounter = 0;
-    private int id = idCounter++;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Objects;
+
+public class Plant implements Comparable<Plant> {
+    private static int idCounter = 1;
+    private int  id = idCounter++;
 
     private String name;
     private String notes;
@@ -25,23 +27,33 @@ public class Plant {
 
     // konstruktor, který nastaví jako poznámku prázdný řetězec a datum poslední zálivky nastaví na dnešní datum
     public Plant(String name, LocalDate planted, int frequencyOfWatering) throws PlantException {
-        this.name = name;
-        this.notes = "";
-        this.watering = LocalDate.now();
-        this.planted = planted;
-        this.setFrequencyOfWatering(frequencyOfWatering);
+        this(name,"",LocalDate.now(),planted,frequencyOfWatering);
+
     }
 
     // konstruktor, který nastaví totéž co druhý a navíc výchozí frekvenci
     // zálivky na 7 dnů a datum zasazení na dnešní datum
     public Plant(String name, LocalDate planted) throws PlantException {
-        this.name = name;
-        this.notes = "";
-        this.planted = LocalDate.now();
-        this.watering = LocalDate.now();
-        this.setFrequencyOfWatering(7);
+        this(name,"",LocalDate.now(),LocalDate.now(),7);
+
     }
 
+
+
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Plant plant = (Plant) o;
+//        return id == plant.id && Objects.equals(name, plant.name);
+//    }
+
+
+
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
     public String getName() {
         return name;
@@ -71,6 +83,7 @@ public class Plant {
         return watering;
     }
 
+
     // vrátí odchycenou vyjímku "datum zálivky je starši než zasazení rotliny"
     public void setWatering(LocalDate watering) throws PlantException {
         if (watering.isBefore(planted)) {
@@ -94,32 +107,28 @@ public class Plant {
     }
 
 
-    // public LocalDate getOtherTopping(){
-
-    //   LocalDate otherTopping;
-
-    //   otherTopping=  watering.plusDays(frequencyOfWatering);
-
-    //  return otherTopping;
-
-    //  }
-    // metoda, která vrátí název květiny, datum poslední zálivky a datum doporučené další zálivky.
     public String getWateringInfo() {
 
         return "Název:   " + name + "   Datum poslední zálivky:   " + watering + "   Doporučená doba zálivky:   " + watering.plusDays(frequencyOfWatering);
     }
 
+
+
     @Override
     public String toString() {
-        return
-                "  ID rostliny:              " + id + '\n' +
+        return          "ID rostliny:              " + id + '\n' +
                         "  Název rostliny:           " + name + '\n' +
                         "  poznámka:                 " + notes + '\n' +
                         "  datum, kdy byla zasazena: " + planted + '\n' +
                         "  datum poslední zálivky:   " + watering + '\n' +
                         "  frekvence zalévání (dny): " + frequencyOfWatering + '\n' +
-                        "  doporučená doba zálivky:  " + watering.plusDays(frequencyOfWatering) + '\n'
+                        "  doporučená doba zálivky:  " + watering.plusDays(frequencyOfWatering) + '\n'+'\n'
 
                 ;
+    }
+
+    @Override
+    public int compareTo(Plant plant2) {
+        return name.compareTo(plant2.name);
     }
 }

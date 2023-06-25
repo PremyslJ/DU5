@@ -1,10 +1,10 @@
 public class Settings {
-    public static String fileName() {
+    public static String fileNameInput() {
 
         return "kvetiny.txt";  // název načteného souboru
     }
 
-    public static String fileName1() {
+    public static String fileNameOutput() {
 
         return "kvetiny1.txt"; //název uloženého souboru
     }
